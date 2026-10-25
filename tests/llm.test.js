@@ -112,3 +112,9 @@ test("Ollama uses the local /v1 endpoint with no key", async () => {
   assert.equal(r.text, "offline hi");
   assert.equal(f.calls[0].options.headers.Authorization, undefined);
 });
+
+test("Ollama not running -> tells you how to start it", async () => {
+  const f = async () => { throw new TypeError("Failed to fetch"); };
+  const brain = new Brain({ ...DEFAULT_SETTINGS, useOllama: true }, { fetchFn: f, sleep: noSleep });
+  await assert.rejects(brain.chat("S", [{ role: "user", text: "hi" }], []), /Is it running\?/);
+});

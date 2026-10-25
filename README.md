@@ -10,7 +10,7 @@ Talk to it. It *thinks*, picks a tool, acts, and answers out loud.
 [![Live demo](https://img.shields.io/badge/Live%20demo-open%20Shadow-8b5cf6?style=for-the-badge)](https://acharyasudeekshith18-boop.github.io/shadow-ai-agent/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-c084fc?style=for-the-badge)](LICENSE)
 [![PWA](https://img.shields.io/badge/PWA-installable-22d3ee?style=for-the-badge)](https://acharyasudeekshith18-boop.github.io/shadow-ai-agent/)
-[![Tests](https://img.shields.io/badge/tests-32%20JS%20%2B%2011%20Python%20passing-34d399?style=for-the-badge)](#-run-the-tests)
+[![Tests](https://img.shields.io/badge/tests-33%20JS%20%2B%2011%20Python%20passing-34d399?style=for-the-badge)](#-run-the-tests)
 
 **Live:** https://acharyasudeekshith18-boop.github.io/shadow-ai-agent/
 
@@ -92,7 +92,7 @@ Opening `index.html` by double-click won't work fully, because browsers block ES
 ## 🧪 Run the tests
 
 ```bash
-npm test                      # 32 unit tests, Node 18+ (no npm install needed)
+npm test                      # 33 unit tests, Node 18+ (no npm install needed)
 node tests/live/live-tools.mjs   # calls the real free APIs
 node tests/live/ollama-e2e.mjs   # full agent run with a local Ollama model
 cd backend && pip install -r requirements.txt && pytest -q   # 11 backend tests

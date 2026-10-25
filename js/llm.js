@@ -207,6 +207,7 @@ function explain(errors) {
   let hint = "Every AI provider failed.";
   if (/HTTP 429/.test(all)) hint = "I've hit the free limit for now (too many requests). Wait a minute, or add a Groq key as backup.";
   else if (/HTTP (400|401|403)/.test(all) && /key|API_KEY|permission|auth/i.test(all)) hint = "The API key looks wrong. Check it in Settings.";
+  else if (/ollama\/[^|]*network error/.test(all) && !/(gemini|groq)\//.test(all)) hint = "I can't reach Ollama. Is it running? Start it with OLLAMA_ORIGINS=* ollama serve, and open Shadow from http://localhost.";
   else if (/network error/.test(all)) hint = "I can't reach the AI. Check your internet connection.";
   return `${hint} (details: ${all})`;
 }
