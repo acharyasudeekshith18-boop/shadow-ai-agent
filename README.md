@@ -67,6 +67,10 @@ Opening `index.html` by double-click won't work fully, because browsers block ES
 2. Start it so the browser may talk to it: `OLLAMA_ORIGINS=* ollama serve` (Windows PowerShell: `$env:OLLAMA_ORIGINS="*"; ollama serve`)
 3. In Settings tick **Use Ollama on this computer**. Small local models are slower and less accurate than Gemini.
 
+## 📘 Step-by-step build guide
+
+A 48-page beginner guide (architecture, DFDs, every file explained with full code, deployment, report outline, 25 viva questions): [docs/Shadow-AI-Agent-Build-Guide.pdf](docs/Shadow-AI-Agent-Build-Guide.pdf)
+
 ## 🧩 How it works
 
 ```
