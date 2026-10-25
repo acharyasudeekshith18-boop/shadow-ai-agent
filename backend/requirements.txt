@@ -1,0 +1,9 @@
+# Backend (optional) - Python 3.10+
+fastapi>=0.110
+uvicorn>=0.29
+requests>=2.31
+python-dotenv>=1.0
+psutil>=5.9
+ddgs>=9.0          # DuckDuckGo search (formerly "duckduckgo_search")
+pytest>=8.0        # for running the tests
+httpx>=0.27        # used by FastAPI's TestClient in the tests

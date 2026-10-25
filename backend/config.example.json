@@ -1,0 +1,10 @@
+{
+  "assistant_name": "Shadow",
+  "user_name": "Sudeekshith",
+  "city": "Shivamogga",
+  "provider_order": ["gemini", "groq", "ollama"],
+  "gemini_models": ["gemini-flash-lite-latest", "gemini-flash-latest"],
+  "groq_models": ["llama-3.3-70b-versatile", "llama-3.1-8b-instant"],
+  "ollama_models": ["qwen2.5:3b"],
+  "allowed_origins": ["*"]
+}

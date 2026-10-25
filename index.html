@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Shadow – Personal AI Agent</title>
+  <meta name="description" content="Shadow: a free, open-source voice AI agent that runs in your browser. Talk to it, and it thinks, uses tools and answers." />
+  <meta name="theme-color" content="#0b0614" />
+  <!-- PWA: lets people "Install" / "Add to Home screen" like a real app -->
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- ============ Top bar ============ -->
+  <header class="topbar">
+    <div class="brand"><span class="logo-dot"></span>SHADOW</div>
+    <div class="top-actions">
+      <span id="providerBadge" class="badge" title="Which AI brain answered last">no brain yet</span>
+      <button id="memoryBtn" class="icon-btn" title="Memory: facts, notes, reminders" aria-label="Memory">🧠</button>
+      <button id="settingsBtn" class="icon-btn" title="Settings" aria-label="Settings">⚙</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ The animated orb ============ -->
+    <section class="orb-zone">
+      <button id="orb" class="orb idle" aria-label="Tap to talk to Shadow">
+        <span class="ring r1"></span><span class="ring r2"></span><span class="ring r3"></span>
+        <span class="core"></span>
+      </button>
+      <div id="status" class="status">Tap the orb and talk</div>
+      <div id="liveText" class="live-text"></div>
+    </section>
+
+    <!-- First-run help, hidden once a key is saved -->
+    <section id="setupCard" class="setup-card hidden">
+      <b>Welcome! One step to start:</b> get a free Gemini key at
+      <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a>,
+      then paste it in <button id="openSettingsFromCard" class="link-btn">Settings</button>.
+      Your key stays on this device.
+    </section>
+
+    <!-- ============ Chat log ============ -->
+    <section id="chat" class="chat" aria-live="polite"></section>
+  </main>
+
+  <!-- ============ Text input (works without a mic) ============ -->
+  <form id="inputBar" class="input-bar">
+    <input id="textInput" type="text" placeholder="Type a message… e.g. weather in Mysuru" autocomplete="off" />
+    <button type="submit" class="send-btn" aria-label="Send">➤</button>
+  </form>
+
+  <!-- ============ Settings dialog ============ -->
+  <dialog id="settingsDialog">
+    <form method="dialog" id="settingsForm" class="panel">
+      <h2>Settings</h2>
+      <label>Your name <input name="userName" /></label>
+      <label>Home city (for weather) <input name="city" /></label>
+
+      <h3>AI brain (free keys)</h3>
+      <label>Gemini API key <small>(free: <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a>)</small>
+        <input name="geminiKey" type="password" placeholder="AIza…" autocomplete="off" /></label>
+      <label>Groq API key, optional backup <small>(free: <a href="https://console.groq.com/keys" target="_blank" rel="noopener">console.groq.com/keys</a>)</small>
+        <input name="groqKey" type="password" placeholder="gsk_…" autocomplete="off" /></label>
+      <label class="row"><input name="useOllama" type="checkbox" /> Use Ollama on this computer (offline, no key)</label>
+      <label>Ollama address <input name="ollamaUrl" /></label>
+      <label>Gemini models (comma separated, first is tried first) <input name="geminiModels" /></label>
+      <label>Groq models <input name="groqModels" /></label>
+      <label>Ollama models <input name="ollamaModels" /></label>
+
+      <h3>Voice</h3>
+      <label class="row"><input name="speakReplies" type="checkbox" /> Speak replies out loud</label>
+      <label class="row"><input name="conversationMode" type="checkbox" /> Conversation mode (listen again after answering)</label>
+      <label class="row"><input name="wakeWord" type="checkbox" /> Wake word: say "Hey Shadow" (page must stay open)</label>
+      <label>Voice <select name="voiceName"></select></label>
+      <label>Speed <input name="voiceRate" type="range" min="0.6" max="1.6" step="0.1" /></label>
+      <label>Pitch <input name="voicePitch" type="range" min="0.3" max="1.6" step="0.1" /></label>
+      <label>Wait this long after you stop talking (ms) <input name="silenceMs" type="number" min="800" max="6000" step="100" /></label>
+      <label>Speech language <select name="language">
+        <option value="en-IN">English (India)</option><option value="en-US">English (US)</option>
+        <option value="hi-IN">Hindi</option><option value="kn-IN">Kannada</option></select></label>
+
+      <div class="panel-actions">
+        <button type="button" id="testBtn">Test my key</button>
+        <button type="button" id="clearKeysBtn" class="danger">Delete keys</button>
+        <button value="save" class="primary">Save</button>
+      </div>
+      <div id="testResult" class="test-result"></div>
+    </form>
+  </dialog>
+
+  <!-- ============ Memory dialog ============ -->
+  <dialog id="memoryDialog">
+    <form method="dialog" class="panel">
+      <h2>Shadow's memory</h2>
+      <h3>Facts about you</h3><ul id="factsList" class="mem-list"></ul>
+      <h3>Notes</h3><ul id="notesList" class="mem-list"></ul>
+      <h3>Reminders</h3><ul id="remindersList" class="mem-list"></ul>
+      <div class="panel-actions">
+        <button type="button" id="clearChatBtn">Clear chat</button>
+        <button type="button" id="wipeBtn" class="danger">Erase all memory</button>
+        <button value="close" class="primary">Close</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

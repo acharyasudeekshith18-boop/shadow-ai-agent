@@ -1,0 +1,13 @@
+{
+  "name": "shadow-ai-agent",
+  "version": "1.0.0",
+  "description": "Shadow: a free, open-source voice AI agent that runs in the browser (Gemini / Groq / Ollama, function calling, tools, memory).",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test",
+    "test:live": "node tests/live/live-tools.mjs",
+    "test:ollama": "node tests/live/ollama-e2e.mjs",
+    "start": "npx serve ."
+  }
+}

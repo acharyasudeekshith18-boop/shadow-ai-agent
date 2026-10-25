@@ -1,0 +1,11 @@
+# Secrets - NEVER commit these
+.env
+config.json
+# Local data and caches
+backend/data/
+__pycache__/
+*.pyc
+.pytest_cache/
+node_modules/
+.venv/
+venv/
